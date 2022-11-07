@@ -66,14 +66,15 @@ function get_flag {
     treasuryBoxID=$(echo "$getBoxOutput" | jq -c ".[1].created[0].reference.objectId")
     echo "treasuryBoxID: $treasuryBoxID"
 
-    if [[ "$treasuryBoxID" != "null" ]]; then 
+    if [[ "$treasuryBoxID" != "null" ]]; then
+      date=$(date '+%Y%m%d%H%M%S')
       echo "Get flag..."
       getFlagOutput=$(sui client call --json --function get_flag --module test_ctf --package $newPackageID --gas-budget 1000000 --args $treasuryBoxID)
-      echo "$getFlagOutput" > output/getFlagOutput.json
+      echo "$getFlagOutput" > output/getFlagOutput_$treasuryBoxID_$date.json
       echo "Get flag output: $getFlagOutput"
 
       if [[ "$getFlagOutput" == *"moveEvent"* ]]; then
-        echo "Flag: $getFlagOutput"
+        echo "Success get Flag!"
         exit 0
       else
         echo "Flag not found"
@@ -83,6 +84,7 @@ function get_flag {
 
 function loop_get_flag {
   while true; do
+    echo ""
     echo "Try get flag..."
     get_flag
     sleep 1

@@ -6,6 +6,6 @@ version = "0.0.1"
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework", rev = "devnet" }
 
 [addresses]
-ctf = "0xb2e558d5ce94e6d809f2e9a26ef1992ee12eefe4"
-game = "0xb2e558d5ce94e6d809f2e9a26ef1992ee12eefe4"
+ctf = "0xc22397132c7ed69fe3ce5de3a8554511ee3e17da"
+game = "0xc22397132c7ed69fe3ce5de3a8554511ee3e17da"
 sui = "0x2"
